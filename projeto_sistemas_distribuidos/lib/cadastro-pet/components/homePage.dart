@@ -42,7 +42,10 @@ class _HomePageState extends State<HomePage> {
             ),
             drawer: _buildDrawer(),
             extendBodyBehindAppBar: false,
-            body: _buildBody(),
+            body: RefreshIndicator(
+              onRefresh: _pullRefresh,
+              child: _buildBody(),
+            ),
             floatingActionButton: Container(
               alignment: Alignment.bottomRight,
               child: new FloatingActionButton(
@@ -220,7 +223,7 @@ class _HomePageState extends State<HomePage> {
     }).toList();
 
     setState(() {
-      if (sugestoes!.isNotEmpty){
+      if (sugestoes!.isNotEmpty) {
         _bloc?.state.listaPets = sugestoes;
       }
       else {
@@ -244,8 +247,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       backgroundColor: Colors.white,
-      title: Image.asset("assets/logo_roxo.png",
-      scale: 3),
+      title: Image.asset("assets/logo_roxo.png", scale: 3),
       centerTitle: true,
       elevation: 0,
       actions: [
@@ -332,5 +334,11 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  Future<void> _pullRefresh() async {
+    setState(() {
+      _bloc?.inicializarListaPets();
+    });
   }
 }

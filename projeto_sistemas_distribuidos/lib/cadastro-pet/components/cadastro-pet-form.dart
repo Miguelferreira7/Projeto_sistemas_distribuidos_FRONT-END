@@ -20,7 +20,6 @@ class _CadastroPetState extends State<CadastroPet> {
   TextEditingController controladorHistoriaPet = new TextEditingController();
   TextEditingController controladorPortePet = new TextEditingController();
 
-
   Pet pet = new Pet();
 
   @override
@@ -94,7 +93,7 @@ class _CadastroPetState extends State<CadastroPet> {
                   pet.historia = controladorHistoriaPet.text;
                   pet.porte = controladorPortePet.text;
                   pet.imagem = _bloc!.imagemPetBase64;
-                  pet.idDono = "1";
+                  pet.idDono = _bloc!.idUsuario;
 
                   _bloc!.cadastrarPet(context, pet);
                   _bloc!.inicializarListaPets();
@@ -181,6 +180,7 @@ class _CadastroPetState extends State<CadastroPet> {
                 color: const Color.fromRGBO(228, 226, 222, 1),
               ),
               child: new TextField(
+              
                 maxLines: null,
                 controller: controlador,
                 cursorColor: Colors.transparent,

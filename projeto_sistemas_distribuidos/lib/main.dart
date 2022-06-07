@@ -21,13 +21,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+   
       debugShowCheckedModeBanner: false,
       title: 'Adopets',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: Color(0xFF605088),
       ),
-      home: LoginPage(),
+      home: new LoginPage(),
       routes: {
         HomePage.ROUTE: (context) => new HomePage(),
         DetalhePet.ROUTE: (context) => new DetalhePet(),
